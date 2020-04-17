@@ -21,4 +21,4 @@ dependencies:
   - snpeff=4.1
   - perl-vcftools-vcf=0.1.16
   - vcftools=0.1.16
-  
+  - sra-tools=2.10

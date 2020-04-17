@@ -96,7 +96,7 @@ class Snp():
         # Picard-Tools
         self.__picard          = "picard"
         # SNP / InDel Calling
-        self.__gatk            = "gatk"
+        self.__gatk            = "gatk3"
         # Other
         self.__bcftools        = "bcftools"
         self.__bedtools        = "bedtools"

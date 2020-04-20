@@ -6,7 +6,7 @@ RUN useradd -r -u 1080 pipeline_user
 
 RUN apt -y update
 
-WORKDIR /home/pipeline_user/
+WORKDIR /home/pipeline_user//
 
 RUN git clone https://github.com/CPTR-ReSeqTB/UVP.git
 
@@ -51,6 +51,8 @@ RUN ./aws/install
 RUN rm -rf aws*
 
 RUN conda install sra-tools=2.10 entrez-direct
+
+USER pipeline_user
 
 ADD fetch_and_run.sh /home/pipeline_user/fetch_and_run.sh
 

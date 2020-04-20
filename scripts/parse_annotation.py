@@ -2,7 +2,6 @@
 from __future__ import print_function
 import sys
 import re
-from string import join
 
 
 """ The script accepts a SnpEff annotated VCF file and the sample ID name (string) as input options """

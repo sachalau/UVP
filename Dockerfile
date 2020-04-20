@@ -6,16 +6,6 @@ RUN useradd -r -u 1080 pipeline_user
 
 RUN apt -y update
 
-RUN apt install unzip
-
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-
-RUN unzip awscliv2.zip
-
-RUN ./aws/install
-
-RUN rm -rf aws*
-
 WORKDIR /home/pipeline_user/
 
 RUN git clone https://github.com/CPTR-ReSeqTB/UVP.git
@@ -50,13 +40,21 @@ RUN gatk3-register GenomeAnalysisTK.jar
 
 RUN chown -R pipeline_user /home/pipeline_user/
 
-USER pipeline_user
+RUN apt install unzip
 
-ADD fetch_andrun /home/pipeline_user/fetch_and_run.sh
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+RUN unzip awscliv2.zip
+
+RUN ./aws/install
+
+RUN rm -rf aws*
+
+RUN conda install sra-tools=2.10 entrez-direct
+
+ADD fetch_and_run.sh /home/pipeline_user/fetch_and_run.sh
 
 ENTRYPOINT ["/home/pipeline_user/fetch_and_run.sh"]
-
-
 
 
 

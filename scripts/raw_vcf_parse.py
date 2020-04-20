@@ -33,10 +33,10 @@ fh1.close()
 
 for line in fh2:
   if line.startswith("#"):
-     continue
+    continue
   fields = line.rstrip("\r\n").split("\t")
   if fields[1] not in pos and fields[6] != 'PASS':
-     print(id[0] + "\t" + fields[1] + "\t" + fields[3] + "\t" + fields[4] + "\t" + fields[6], file=fh3)
+    print(id[0] + "\t" + fields[1] + "\t" + fields[3] + "\t" + fields[4] + "\t" + fields[6], file=fh3)
 
 fh2.close()
 fh3.close()

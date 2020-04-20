@@ -508,7 +508,7 @@ class Snp():
                if line.startswith("Percentage"):
                    wid_str = line.split(":")
                    wid = wid_str[1].strip(" ")
-           if cov != '' and int(cov) < 10:
+           if cov != '' and float(cov.strip()) < 10:
                self.__low = "positive"
                self.__logFH2.write(i.strftime('%Y/%m/%d %H:%M:%S') + "\t" + "Input:" + "\t" + self.name + "\t" + "low genome coverage depth\n")
            if wid != '' and float(wid) < 94.99:

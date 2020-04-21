@@ -8,7 +8,7 @@ RUN apt -y update
 
 WORKDIR /home/pipeline_user//
 
-RUN git clone https://github.com/CPTR-ReSeqTB/UVP.git
+RUN git clone https://github.com/sachalau/UVP.git
 
 RUN mkdir /opt/conda/envs/
 

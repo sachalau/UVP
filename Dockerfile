@@ -6,7 +6,7 @@ RUN useradd -r -u 1080 pipeline_user
 
 RUN apt -y update
 
-WORKDIR /home/pipeline_user//
+WORKDIR /home/pipeline_user/
 
 RUN git clone https://github.com/sachalau/UVP.git
 
@@ -51,6 +51,16 @@ RUN ./aws/install
 RUN rm -rf aws*
 
 RUN conda install sra-tools=2.10 entrez-direct
+
+RUN wget https://ccb.jhu.edu/software/kraken/dl/minikraken_20171019_8GB.tgz
+
+RUN tar xf minikraken_20171019_8GB.tgz
+
+RUN mkdir /KRAKEN
+
+RUN mv minikraken_20171019_8GB /KRAKEN/customdb
+
+RUN rm -rf minikraken*
 
 USER pipeline_user
 

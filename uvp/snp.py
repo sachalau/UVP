@@ -96,7 +96,7 @@ class Snp():
         # Picard-Tools
         self.__picard          = "picard"
         # SNP / InDel Calling
-        self.__gatk            = "gatk3"
+        self.__gatk            = "gatk"
         # Other
         self.__bcftools        = "bcftools"
         self.__bedtools        = "bedtools"
@@ -303,7 +303,7 @@ class Snp():
         self.__ifVerbose("   Running RealignerTargetCreator.")
         self.__CallCommand('RealignerTargetCreator', ['env', '_JAVA_OPTIONS=-Xmx32g', self.__gatk, '-T', 
                            'RealignerTargetCreator', '-I', GATKdir +'/GATK_sdr.bam', '-R', self.reference, 
-                           '-o', GATKdir +'/GATK.intervals', '-nt', '12'])
+                           '-o', GATKdir +'/GATK.intervals', '-nt', '2'])
         self.__ifVerbose("   Running IndelRealigner.")
         self.__CallCommand('IndelRealigner', ['env', '_JAVA_OPTIONS=-Xmx4g', self.__gatk, '-T', 'IndelRealigner', '-l', 
                            'INFO', '-I', GATKdir +'/GATK_sdr.bam', '-R', self.reference, '-targetIntervals', 
@@ -348,7 +348,7 @@ class Snp():
             self.__ifVerbose("   Running UnifiedGenotyper.")
             self.__CallCommand('Pileup', ['env', '_JAVA_OPTIONS=-Xmx4g', self.__gatk, '-T', 'Pileup',
                                '-I', self.__finalBam, '-R', self.reference,'-o', self.fOut + "/" + self.name +'.mpileup',
-                               '-nct', '6', '-nt', '4'])
+                               '-nct', '1', '-nt', '2'])
             self.__CallCommand('UnifiedGenotyper', ['env', '_JAVA_OPTIONS=-Xmx4g', self.__gatk, '-T', 'UnifiedGenotyper', 
                                '-glm', 'BOTH', '-R', self.reference, '-I', self.__finalBam, '-o',  GATKdir +'/gatk.vcf', 
                                '-stand_call_conf', '20.0', '-stand_emit_conf', '20.0', '-nct', '6', '-nt', '4']) 

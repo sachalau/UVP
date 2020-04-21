@@ -6,7 +6,7 @@ RUN useradd -r -u 1080 pipeline_user
 
 RUN apt -y update
 
-WORKDIR /home/pipeline_user/
+WORKDIR /home/pipeline_user
 
 RUN git clone https://github.com/sachalau/UVP.git
 
@@ -30,13 +30,13 @@ RUN tar xf GenomeAnalysisTK-3.6-0-g89b7209.tar.bz2
 
 RUN echo "source activate reseqtb-uvp" > /home/pipeline_user/.bashrc
 
-ENV PATH /opt/conda/envs/reseqtb-uvp/bin:$PATH
+ENV PATH=/opt/conda/envs/reseqtb-uvp/bin:$PATH
 
 RUN pip install -e .
 
 RUN snpEff download m_tuberculosis_H37Rv
 
-RUN gatk3-register GenomeAnalysisTK.jar
+RUN gatk-register GenomeAnalysisTK.jar
 
 RUN chown -R pipeline_user /home/pipeline_user/
 
@@ -52,7 +52,7 @@ RUN rm -rf aws*
 
 RUN conda install sra-tools=2.10 entrez-direct
 
-RUN wget https://ccb.jhu.edu/software/kraken/dl/minikraken_20171019_8GB.tgz
+RUN wget --quiet https://ccb.jhu.edu/software/kraken/dl/minikraken_20171019_8GB.tgz
 
 RUN tar xf minikraken_20171019_8GB.tgz
 
